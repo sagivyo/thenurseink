@@ -33,7 +33,7 @@ h2{font-size:clamp(28px,5vw,44px);text-align:center}
 header{position:sticky;top:0;z-index:20;background:rgba(216,207,193,.92);
   backdrop-filter:blur(8px);border-bottom:1px solid rgba(35,32,28,.08)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
-header img{height:30px;width:auto}
+header img{height:30px;width:auto;mix-blend-mode:multiply}
 nav{display:flex;gap:22px;font-size:16px}
 nav a{text-decoration:none;padding:4px 0;border-bottom:1px solid transparent}
 nav a:hover{border-color:var(--taupe)}
@@ -42,7 +42,7 @@ nav a:hover{border-color:var(--taupe)}
 .hero{padding:56px 0 72px}
 .sheet{position:relative;background:var(--paper);padding:64px 6% 56px;
   box-shadow:0 18px 48px rgba(35,32,28,.10);text-align:center}
-.tape{position:absolute;top:-18px;right:50%;transform:translateX(50%) rotate(-1.2deg);
+.tape{position:absolute;top:-18px;left:50%;transform:translateX(-50%) rotate(-1.2deg);
   width:190px;height:38px;background:var(--tape);opacity:.95}
 .sheet>img{margin:0 auto;width:min(230px,55vw)}
 .hero .hand{font-size:clamp(30px,5.5vw,48px);margin:28px 0 8px}
@@ -88,7 +88,7 @@ button:hover{background:var(--taupe)}
 .hp{position:absolute;left:-9999px}
 
 footer{background:var(--ink);color:var(--sand);padding:44px 0;text-align:center;font-size:16px}
-footer img{height:38px;width:auto;margin:0 auto 18px;filter:invert(1) brightness(1.6)}
+footer img{height:38px;width:auto;margin:0 auto 18px;filter:invert(1) brightness(1.6);mix-blend-mode:screen}
 footer a{color:var(--sand)}
 footer p{margin:6px 0}
 @media(max-width:620px){nav{gap:14px;font-size:15px}nav a:first-child{display:none}}
@@ -160,7 +160,7 @@ footer p{margin:6px 0}
       <!-- הוסיפי קבצים לתיקיית gallery/ והם יופיעו כאן -->
     </div>
     <p class="empty" id="gallery-empty">התמונות יעלו לכאן בקרוב</p>
-    <p class="ig"><a href="https://www.instagram.com/thenurseink/" target="_blank" rel="noopener">@THENURSEINK באינסטגרם ←</a></p>
+    <p class="ig"><a href="https://www.instagram.com/thenurseink/" target="_blank" rel="noopener"><span dir="ltr">@THENURSEINK</span> באינסטגרם ←</a></p>
   </div>
 </section>
 
@@ -197,7 +197,7 @@ footer p{margin:6px 0}
   <div class="wrap">
     <img src="assets/logo-wordmark.png" alt="">
     <p>מנחם בגין 150, מיד־טאון תל אביב</p>
-    <p><a href="https://www.instagram.com/thenurseink/" target="_blank" rel="noopener">@THENURSEINK</a></p>
+    <p><a href="https://www.instagram.com/thenurseink/" target="_blank" rel="noopener"><span dir="ltr">@THENURSEINK</span></a></p>
     <p style="opacity:.6;font-size:14px;margin-top:18px">© <span id="y"></span> The Nurse Ink</p>
   </div>
 </footer>
