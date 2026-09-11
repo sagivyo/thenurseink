@@ -85,7 +85,8 @@ button{font:inherit;font-weight:700;background:var(--ink);color:var(--paper);
   border:0;padding:15px;cursor:pointer;border-radius:2px}
 button:hover{background:var(--taupe)}
 .note{font-size:15px;color:var(--taupe);text-align:center;margin:0}
-.hp{position:absolute;left:-9999px}
+.alt{max-width:560px;margin:26px auto 0;text-align:center;font-size:16px;color:#4a443d}
+.alt a{font-weight:700}
 
 footer{background:var(--ink);color:var(--sand);padding:44px 0;text-align:center;font-size:16px}
 footer img{height:38px;width:auto;margin:0 auto 18px;filter:invert(1) brightness(1.6);mix-blend-mode:screen}
@@ -167,11 +168,7 @@ footer p{margin:6px 0}
 <section id="contact" class="wrap">
   <h2>צרו קשר</h2>
   <p class="lead">מלאו את הפרטים ואחזור אליכם. אפשר גם לכתוב ישירות באינסטגרם.</p>
-  <form action="https://formsubmit.co/PLACEHOLDER@EMAIL.COM" method="POST">
-    <input type="hidden" name="_subject" value="פנייה חדשה מהאתר — The Nurse Ink">
-    <input type="hidden" name="_captcha" value="false">
-    <input type="hidden" name="_template" value="table">
-    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off">
+  <form id="contact-form">
     <div>
       <label for="name">שם מלא</label>
       <input id="name" name="שם" type="text" required autocomplete="name">
@@ -188,9 +185,15 @@ footer p{margin:6px 0}
       <label for="msg">במה אוכל לעזור?</label>
       <textarea id="msg" name="הודעה" required></textarea>
     </div>
-    <button type="submit">שליחה</button>
-    <p class="note">הפרטים נשלחים אליי במייל ואינם נשמרים באתר.</p>
+    <button type="submit">פתיחת ההודעה בדוא״ל</button>
+    <p class="note">הטופס פותח את תוכנת הדואר שלכם עם ההודעה מוכנה לשליחה.
+      הפרטים לא נשמרים באתר ולא עוברים דרך שירות חיצוני.</p>
   </form>
+  <p class="alt">
+    לא נפתחה תוכנת דואר? אפשר גם
+    <a id="wa-link" href="#" target="_blank" rel="noopener">בוואטסאפ</a>
+    או ישירות למייל <a id="mail-link" href="#"></a>
+  </p>
 </section>
 
 <footer>
@@ -203,7 +206,33 @@ footer p{margin:6px 0}
 </footer>
 
 <script>
+// ===== פרטי קשר — לעדכן כאן בלבד =====
+const EMAIL = 'PLACEHOLDER@EMAIL.COM';   // כתובת המייל שאליה יגיעו הפניות
+const WHATSAPP = '9725XXXXXXXX';         // מספר וואטסאפ בפורמט בינלאומי, ללא + וללא מקפים
+// =====================================
+
 document.getElementById('y').textContent = new Date().getFullYear();
+
+document.getElementById('mail-link').textContent = EMAIL;
+document.getElementById('mail-link').href = 'mailto:' + EMAIL;
+document.getElementById('wa-link').href =
+  'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('היי, הגעתי מהאתר ואשמח לתאם ייעוץ');
+
+// הטופס לא נשלח לשרת — הוא בונה הודעת מייל ופותח את תוכנת הדואר של המשתמש
+document.getElementById('contact-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  const body = [
+    'שם: ' + v('name'),
+    'טלפון: ' + v('phone'),
+    'אימייל: ' + v('email'),
+    '',
+    v('msg')
+  ].join('\r\n');
+  location.href = 'mailto:' + EMAIL
+    + '?subject=' + encodeURIComponent('פנייה מהאתר — ' + v('name'))
+    + '&body=' + encodeURIComponent(body);
+});
 
 // גלריה: קבצים בתיקיית gallery/ בשם 1.jpg, 2.jpg ... נטענים עד לראשון שחסר
 (async () => {
